@@ -1,0 +1,8 @@
+[Service]
+ExecStartPre=-/usr/bin/docker kill %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run -rm -name %n  localhost:4001"
+ExecStop=/usr/bin/docker stop -t 3 %n
+
+[X-Fleet]
+X-ConditionMachineOf=sensu-redis.service
